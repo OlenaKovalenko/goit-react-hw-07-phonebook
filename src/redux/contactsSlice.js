@@ -16,14 +16,13 @@ export const contactsSlice = createSlice({
                 }
             },
             reducer(state, action) {
-                state.push(action.payload);
+                return state = [...state, action.payload];
                 },
         },
 
         deleteContact: {
             reducer(state, action) {
-                const index = state.find(contact => contact.id === action.payload);
-                state.splice(index, 1);
+                return state = state.filter(contact => contact.id !== action.payload);
             }
         }
     }
