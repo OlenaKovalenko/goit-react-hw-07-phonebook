@@ -2,7 +2,7 @@ import { Formik} from 'formik';
 import * as Yup from 'yup';
 import { BtnAddContact, ErrorMsg, FormLabel, StyledField, StyledForm } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
+import {  selectVisibleContacts } from 'redux/selectors';
 import { addContact } from 'redux/operations';
 
 const validationSchema = Yup.object().shape({
@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
 
 
 export const ContactForm = () => {
-    const contacts = useSelector(selectContacts);
+    const contacts = useSelector(selectVisibleContacts);
     const dispatch = useDispatch();
 
     return (
