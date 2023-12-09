@@ -18,12 +18,12 @@ export const App = () => {
   }, [dispatch])
   
 
-    return (
+  return (
       <AppContainer>
+      {isLoading && !error && <b>Request in progress...</b>}
         
       <MainTitle>Phonebook</MainTitle>
       <ContactForm />
-      {isLoading && !error && <b>Request in progress...</b>}
       <ContactsTitle>Contacts</ContactsTitle>
       <Filter />
       <ContactList />

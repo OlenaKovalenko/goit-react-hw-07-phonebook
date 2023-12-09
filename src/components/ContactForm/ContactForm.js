@@ -11,12 +11,12 @@ const validationSchema = Yup.object().shape({
     .max(40, 'Too long name')
     .required('Name is required!'),
     number: Yup.string()
-    .matches(/^\+(?:[0-9] ?){6,14}[0-9]$/, {
-        message: 'Invalid Phone Number!',
+    .matches(/^\d{3}-\d{3}-\d{4}$/, {
+        message: 'Invalid Phone Number! Use the format 050-936-3917.',
         excludeEmptyString: false,
     })
     .required('Phone number is required!')
-    .max(15, 'Invalid phone number!'),
+    .max(12, 'Invalid phone number!'),
 });
 
 
@@ -49,7 +49,7 @@ export const ContactForm = () => {
             <ErrorMsg name="name" component="div" />
 
             <FormLabel htmlFor="number">Number</FormLabel>
-            <StyledField type="tel" name="number" id="number" autoComplete="on" placeholder="+380..." />
+            <StyledField type="tel" name="number" id="number" autoComplete="on" placeholder="XXX-XXX-XXXX" />
             <ErrorMsg name="number" component="div" />
 
             <BtnAddContact type="submit">Add contact</BtnAddContact>
