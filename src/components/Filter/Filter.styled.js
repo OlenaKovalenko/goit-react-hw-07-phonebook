@@ -9,7 +9,7 @@ export const FilterTitle = styled.h3`
 
 export const FilterInput = styled.input`
     width: 400px;
-    padding: ${p => p.theme.spacing(1)};
+    padding: ${p => p.theme.spacing(1)} ${p => p.theme.spacing(3)};
     border: 1px solid ${p => p.theme.colors.blue};
     border-radius: ${p => p.theme.radii.md};
     font-size: 18px;
