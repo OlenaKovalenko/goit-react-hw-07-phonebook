@@ -1,4 +1,5 @@
 import { GlobalStyle } from 'styles';
+import { Toaster } from 'react-hot-toast';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactList } from '../ContactList/ContactList';
 import { Filter } from '../Filter/Filter';
@@ -20,15 +21,16 @@ export const App = () => {
 
   return (
       <AppContainer>
-      {isLoading && !error && <b>Request in progress...</b>}
+        {isLoading && !error && <b>Request in progress...</b>}
         
-      <MainTitle>Phonebook</MainTitle>
-      <ContactForm />
-      <ContactsTitle>Contacts</ContactsTitle>
-      <Filter />
-      <ContactList />
+        <MainTitle>Phonebook</MainTitle>
+        <ContactForm />
+        <ContactsTitle>Contacts</ContactsTitle>
+        <Filter />
+        <ContactList />
         
-      <GlobalStyle />
+        <Toaster position='top-center'/>
+        <GlobalStyle />
         
     </AppContainer>
     );

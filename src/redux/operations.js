@@ -9,7 +9,7 @@ export const fetchContacts = createAsyncThunk("contacts/fetchAll",
             const { data } = await axios.get("/contacts");
             return data;
         } catch (e) {
-            return thunkAPI.rejectWithValue(e.message)
+            return thunkAPI.rejectWithValue(e.message);
         }
     });
 
@@ -19,7 +19,7 @@ export const addContact = createAsyncThunk("contacts/addContact",
             const { data } = await axios.post("/contacts", {name, number });
             return data;
         } catch (e) {
-            return thunkAPI.rejectWithValue(e.message)
+            return thunkAPI.rejectWithValue(e.message);
         }
     });
 
@@ -29,7 +29,7 @@ export const deleteContact = createAsyncThunk("contacts/deleteContact",
             const { data } = await axios.delete(`/contacts/${id}`);
             return data;
         } catch (e) {
-            return thunkAPI.rejectWithValue(e.message)
+            return thunkAPI.rejectWithValue(e.message);
         }
     });
 

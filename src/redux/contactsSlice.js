@@ -1,5 +1,15 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice, isAnyOf} from "@reduxjs/toolkit";
 import { addContact, deleteContact, fetchContacts } from "./operations";
+
+const STATUS = {
+    PENDING: 'pending',
+    FULFILLED: 'fulfilled',
+    REJECTED: 'rejected'
+};
+
+const arrThunks = [fetchContacts, addContact, deleteContact];
+
+const fn = type => arrThunks.map(el => el[type]);
 
 const handlePending = state => {
     state.isLoading = true;
@@ -7,13 +17,25 @@ const handlePending = state => {
 
 const handleFulfilled = (state,{payload}) => {
     state.isLoading = false;
-    state.items = payload;
     state.error = null;
 };
 
 const handleRejected = (state,{payload}) => {
     state.isLoading = false;
     state.error = payload;
+};
+
+const handleFulfilledGet = (state, { payload }) => {
+    state.items = payload;
+};
+
+const handleFulfilledAdd = (state, { payload }) => {
+    state.items.push(payload);
+};
+
+const handleFulfilledDel = (state, { payload }) => {
+    state.items = state.items.filter(item => item.id !== payload.id);
+    
 };
 
 export const contactsSlice = createSlice({
@@ -24,24 +46,15 @@ export const contactsSlice = createSlice({
         error: null,
     },
     extraReducers: builder => {
+        const { PENDING, FULFILLED, REJECTED } = STATUS;
+
         builder
-            .addCase(fetchContacts.pending, handlePending)
-            .addCase(fetchContacts.fulfilled, handleFulfilled)
-            .addCase(fetchContacts.rejected, handleRejected)
-            .addCase(addContact.pending, handlePending)
-            .addCase(addContact.fulfilled, (state, {payload}) => {
-                state.isLoading = false;
-                state.error = null;
-                state.items.push(payload);
-            })
-            .addCase(addContact.rejected, handleRejected)
-            .addCase(deleteContact.pending, handlePending)
-            .addCase(deleteContact.fulfilled, (state, {payload}) => {
-                state.isLoading = false;
-                state.error = null;
-                state.items = state.items.filter(item => item.id !== payload.id);
-            })
-            .addCase(deleteContact.rejected, handleRejected)
+            .addCase(fetchContacts.fulfilled, handleFulfilledGet)
+            .addCase(addContact.fulfilled, handleFulfilledAdd)
+            .addCase(deleteContact.fulfilled, handleFulfilledDel)
+            .addMatcher(isAnyOf(...fn(PENDING)), handlePending)
+            .addMatcher(isAnyOf(...fn(FULFILLED)), handleFulfilled)
+            .addMatcher(isAnyOf(...fn(REJECTED)), handleRejected)
     }
 });
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const AppContainer = styled.div`
     width: 600px;
-    margin: ${p => p.theme.spacing(6)} auto;
+    margin: ${p => p.theme.spacing(15)} auto;
     padding: ${p => p.theme.spacing(6)};
     background-color: ${p => p.theme.colors.lightGrey};
     border-radius: ${p => p.theme.radii.lg};
