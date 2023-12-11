@@ -11,7 +11,10 @@ export const ContactLi = styled.li`
 
 `;
 
-export const ContactName = styled.p`
+export const ContactName = styled.div`
+    display: flex;
+    width: 320px;
+    justify-content: space-between;
     color: ${p => p.theme.colors.black};
     font-size: 16px;
     font-weight: 500;
@@ -34,5 +37,4 @@ export const BtnDelete = styled.button`
         background-color: ${p => p.theme.colors.red};
         font-weight: 600;
     }
-
 `;

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectIsLoading } from 'redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
+import { Loader } from 'components/Loader/Loader';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,9 @@ export const App = () => {
   
 
   return (
+    <>
+      {isLoading && !error && <Loader/>}
       <AppContainer>
-        {isLoading && !error && <b>Request in progress...</b>}
         
         <MainTitle>Phonebook</MainTitle>
         <ContactForm />
@@ -32,7 +34,8 @@ export const App = () => {
         <Toaster position='top-center'/>
         <GlobalStyle />
         
-    </AppContainer>
+      </AppContainer>
+    </>
     );
 
 }

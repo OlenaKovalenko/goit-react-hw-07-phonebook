@@ -7,7 +7,10 @@ export const ContactItem = ({ contact: {name, number, id}}) => {
 
     return (
         <ContactLi>
-            <ContactName>{name}: {number}</ContactName>
+            <ContactName>
+                <span>{name}:</span>
+                <span>{number}</span>
+            </ContactName>
             <BtnDelete type="button" onClick={() => dispatch(deleteContact(id))}>Delete</BtnDelete>
         </ContactLi>
     )

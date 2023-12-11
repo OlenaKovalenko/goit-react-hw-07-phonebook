@@ -9,11 +9,11 @@ import { addContact } from 'redux/operations';
 const validationSchema = Yup.object().shape({
     name: Yup.string()
     .min(2, 'Name must contain at least 2 characters')
-    .max(40, 'Too long name')
+    .max(30, 'Too long name')
     .required('Name is required!'),
     number: Yup.string()
     .matches(/^\d{3}-\d{3}-\d{4}$/, {
-        message: 'Invalid Phone Number! Use the format 050-936-3917.',
+        message: 'Invalid Phone Number! Use the format 050-123-4567.',
         excludeEmptyString: false,
     })
     .required('Phone number is required!')
